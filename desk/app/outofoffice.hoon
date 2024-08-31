@@ -66,12 +66,13 @@
         %fact 
       ?+    p.cage.sign  (on-agent:default wire sign)
         %writ-response
-        ~&  >  q.cage.sign
-        ~&  >>  +.-.q.q.cage.sign
-        ~&  >>> +.-.q.q.cage.sign
-        ::=/  who=[%ship @p]  -.q.cage.sign
-        ::~&  >>>  wr
-        ::~&  >>>  !<(response:writs:chat q.cage.sign)
+        ::~&  >  q.cage.sign
+        ::~&  >>  +.-.q.q.cage.sign
+        =/  wr  !<([whom:chat response:writs:chat] q.cage.sign)
+        ~&  >>>  wr
+        =/  from=@p  ;;(@p p.-.wr)
+        ?~  (find recp.state ~[from])
+          `this(recp [from recp])  :: XX: Poke response
         `this
       ==
     ==
