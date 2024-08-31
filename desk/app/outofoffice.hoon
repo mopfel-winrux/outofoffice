@@ -71,8 +71,21 @@
         =/  wr  !<([whom:chat response:writs:chat] q.cage.sign)
         ~&  >>>  wr
         =/  from=@p  ;;(@p p.-.wr)
+        =/  =id:chat  [from now.bowl]
+        =/  =memo:d:chat  :*
+          content=[i=[%inline p=[i=message.state t=[i=[%break ~] t=~]]] t=~]
+          author=our.bowl
+          sent=now.bowl
+          ==
+        =/  =delta:writs:chat  [%add memo ~ ~]
+        =/  =diff:dm:chat  [id delta]
+        =/  =action:dm:chat  [from diff]  
+        ~&  >>  action
+        ?.  on.state  `this
         ?~  (find recp.state ~[from])
-          `this(recp [from recp])  :: XX: Poke response
+          :_  this(recp [from recp])
+          :~  [%pass /dm/response %agent [our.bowl %chat] %poke %chat-dm-action !>(action)]
+          ==
         `this
       ==
     ==
