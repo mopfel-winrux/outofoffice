@@ -14,7 +14,7 @@
   $:  %0
       on=?
       message=@t
-      recp=(list @p)
+      recp=(set @p)
   ==
 +$  card  card:agent:gall
 --
@@ -79,8 +79,8 @@
         =/  =delta:writs:chat  [%add memo ~ ~]
         =/  =diff:dm:chat  [id delta]
         =/  =action:dm:chat  [from diff]  
-        ?~  (find recp.state ~[from])
-          :_  this(recp [from recp.state])
+        ?.  (~(has in recp.state) from)
+          :_  this(recp (~(put in recp) from))
           :~  [%pass /dm/response %agent [our.bowl %chat] %poke %chat-dm-action !>(action)]
           ==
         `this
